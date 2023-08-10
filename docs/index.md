@@ -9,10 +9,10 @@ This is the documentation for the GoodStock
 
 
 ### Digital Ocean Cluster
-- [How to set default context to connect to Digital Ocean Cluster](do-ctx-management.md)
+- [How to set default context to connect to Digital Ocean Cluster](do-ctx-management.md#install)
 
 ### Ambassador Gateway
-- [How to set up Ambassador Edge Stack & TLS]()
+- [How to set up Ambassador Edge Stack & TLS](how-to-setup-ambassador.md#setup-ambassador-edge-stack)
 
 ### Kustomize
 - [How to use Kustomize to build separate environments]()

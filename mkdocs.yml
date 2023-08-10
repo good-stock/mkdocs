@@ -3,6 +3,7 @@ nav:
   - 'Welcome': 'index.md'
   - 'Git Flow' : 'git-flow.md'
   - 'DO context management' : 'do-ctx-management.md'
+  - 'Setup Ambassador Edge Stack' : 'how-to-setup-ambassador.md'
 theme:
   name: material 
   features:
