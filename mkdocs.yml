@@ -2,6 +2,7 @@ site_name: GoodStock docs
 nav:
   - 'Welcome': 'index.md'
   - 'Git Flow' : 'git-flow.md'
+  - 'DO context management' : 'do-ctx-management.md'
 theme:
   name: material 
   features:
@@ -32,6 +33,8 @@ extra:
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/good-stock/mkdocs
+    - icon: fontawesome/brands/discord
+      link: https://github.com/james-willett
       
       
 
