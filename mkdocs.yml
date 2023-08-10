@@ -1,4 +1,7 @@
 site_name: GoodStock docs
+nav:
+  - 'Welcome': 'index.md'
+  - 'Git Flow' : 'git-flow.md'
 theme:
   name: material 
   features:
