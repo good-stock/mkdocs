@@ -7,6 +7,7 @@ Here're guides for our GoodStock, feel free to have a look at it.
 
 ### Git Flow
 - [How to implement Git flow (Version 1)](git-flow.md#how-to-implement-git-flow)
+- [Setup unit test & integration test on Github Action](git-flow.md#setup-unit-test--integration-test-on-github-action)
 
 
 ### Digital Ocean Cluster
