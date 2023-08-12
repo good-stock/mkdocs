@@ -1,0 +1,19 @@
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #ec6539;
+  --md-primary-fg-color--light: #fefa95;
+  --md-primary-fg-color--dark: #90030c;
+  .md-tabs__item {
+    font-weight: 500;
+    color: black;
+  }
+  .md-tabs__link--active,
+  .md-tabs__link:focus,
+  .md-tabs__link:hover {
+    font-weight: bolder;
+    color: white !important;
+  }
+}
+
+/* [data-md-color-scheme="slate"] {
+--md-hue: 210; 
+} */

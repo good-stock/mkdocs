@@ -1,4 +1,6 @@
 site_name: GoodStock docs
+extra_css:
+- stylesheets/extra.css
 nav:
   - 'Welcome': 'index.md'
   - 'Git Flow' : 'git-flow.md'
@@ -8,38 +10,38 @@ nav:
 theme:
   name: material 
   features:
+  - navigation.indexes 
   - navigation.tabs
+  - navigation.tabs.sticky
   - navigation.sections
   - toc.integrate
+  - toc.follow
   - navigation.top
   - search.suggest
   - search.highlight
   - content.tabs.link
   - content.code.annotation
   - content.code.copy
-language: en
-palette:
-  - scheme: default
-    toggle:
-      icon: material/toggle-switch-off-outline 
-      name: Switch to dark mode
-    primary: teal
-    accent: purple 
-  - scheme: slate 
-    toggle:
-      icon: material/toggle-switch
-      name: Switch to light mode    
-    primary: teal
-    accent: lime
-extra:
-  social:
-    - icon: fontawesome/brands/github-alt
-      link: https://github.com/good-stock/mkdocs
-    - icon: fontawesome/brands/discord
-      link: https://github.com/james-willett
-      
-      
-
+  language: en
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch 
+        name: Switch to dark mode
+      primary: deep orange
+      accent: purple 
+    - scheme: default 
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode    
+      primary: deep orange
+      accent: black
+  extra:
+    social:
+      - icon: fontawesome/brands/github-alt
+        link: https://github.com/good-stock/mkdocs
+      - icon: fontawesome/brands/discord
+        link: https://github.com/james-willett
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
