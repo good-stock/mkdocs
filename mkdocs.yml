@@ -8,6 +8,7 @@ nav:
   - 'Setup Ambassador Edge Stack' : 'how-to-setup-ambassador.md'
   - 'Kustomize': 'kustomize.md'
 theme:
+  logo: assets/images/logo.png
   name: material 
   features:
   - navigation.indexes 
