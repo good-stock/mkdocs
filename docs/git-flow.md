@@ -554,9 +554,131 @@ jobs:
 
 ```
 
-## References
+### References
 
 - [GitHub - julie-ng/cloud-architecture-review: Cloud Architecture Review App](https://github.com/julie-ng/cloud-architecture-review/tree/main)
 - [GitHub - saenyakorn/monorepo-versioning-gitops: Versioning workflows on Monorepo and deploy the services with GitOps concept](https://github.com/saenyakorn/monorepo-versioning-gitops/tree/beta)
 - [GitHub - thinc-org/thinc-gitops-example at part-3](https://github.com/thinc-org/thinc-gitops-example/tree/part-3)
 - [GitHub - thinc-org/cugetreg: A course registration planning application for CU students](https://github.com/thinc-org/cugetreg/tree/beta)
+
+## Setup unit test & integration test on Github Action
+1. use suffix for separating unit test & integration test by
+``` sh title="unit test"
+name-of-test.unit.test
+```
+``` sh title="integration test"
+name-of-test.integration.test
+```
+2. implement running testing script in `package.json` file
+``` sh
+"test:unit": "jest --testMatch='**/*.unit.test.ts' --bail",
+"test:integration": "jest --testMatch='**/*.integration.test.ts' --bail"    
+```
+`--bail` will be used on the Github Action pipeline to tell the pipeline that test failed.
+3. create the test pipeline on Github Action. Note we will use docker-compose file to run the db and backend in the pipeline.
+``` yaml
+version: '3.7'
+
+services:
+  backend:
+    container_name: backend
+    build: .
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./test:/usr/src/app/test
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    env_file:
+      - ./.env.dev
+    networks:
+      - web-network
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - web-network
+
+networks:
+  web-network:
+volumes:
+  mongodb_data:
+```
+4. create Github Action file like below
+``` yaml
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Tests Suite
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Inject .env file from secret
+        run: |
+          echo "${{ secrets.ENV_FILE_CONTENTS }}" > .env.dev
+
+      - name: Run npm install packages
+        run: npm install
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+  integration_tests:
+    needs: unit_tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Inject .env file from secret
+        run: |
+          echo "${{ secrets.ENV_FILE_CONTENTS }}" > .env.dev
+
+      - name: Start Docker-Compose
+        run: docker-compose up -d
+
+      - name: Wait for backend service to be ready
+        run: docker-compose exec -T backend sh -c "while ! nc -z localhost 3000; do sleep 1; done"
+
+      - name: Seed the test database
+        run: docker-compose exec -T backend npm run seed:db:test
+
+      - name: Run tests
+        run: docker-compose exec -T backend npm run test:integration
+```
+  - since our docker compose file using `.env.dev` , we have to create the secret key on github repo which according snippet above is `secret.ENV_FILE_CONTENTS`
+
+  - note `-T` in running step to avoid TTY error.

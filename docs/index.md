@@ -3,6 +3,7 @@
 This is the documentation for the GoodStock
 
 ## Guides
+Here're guides for our GoodStock, feel free to have a look at it.
 
 ### Git Flow
 - [How to implement Git flow (Version 1)](git-flow.md#how-to-implement-git-flow)
