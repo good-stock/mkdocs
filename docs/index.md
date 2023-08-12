@@ -15,4 +15,4 @@ This is the documentation for the GoodStock
 - [How to set up Ambassador Edge Stack & TLS](how-to-setup-ambassador.md#setup-ambassador-edge-stack)
 
 ### Kustomize
-- [How to use Kustomize to build separate environments]()
+- [How to use Kustomize to build separate environments](kustomize.md#how-to-use-kustomize-to-build-separate-environments)

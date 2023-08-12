@@ -4,6 +4,7 @@ nav:
   - 'Git Flow' : 'git-flow.md'
   - 'DO context management' : 'do-ctx-management.md'
   - 'Setup Ambassador Edge Stack' : 'how-to-setup-ambassador.md'
+  - 'Kustomize': 'kustomize.md'
 theme:
   name: material 
   features:
