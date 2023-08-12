@@ -156,4 +156,4 @@ ports:
 ``` sh 
 kubectl apply -f tenant-mapping.yaml
 ```
-- and re-check on [Ambassador service](the https://app.getambassador.io/cloud/services) console.
+- and re-check on the [Ambassador service](https://app.getambassador.io/cloud/services) console.
