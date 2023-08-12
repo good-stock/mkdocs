@@ -1,6 +1,6 @@
 # Kustomize
 
-# How to use Kustomize to build separate environments
+## How to use Kustomize to build separate environments
 <p align="center">
     <img src="/assets/images/kustomize/1.png">
 </p>
